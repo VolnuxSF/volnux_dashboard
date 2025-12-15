@@ -31,12 +31,7 @@ export function Header() {
             >
               Docs
             </Link>
-            <Link
-              href="#pricing"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Pricing
-            </Link>
+
             <Link
               href="https://github.com/nshaibu/volnux"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"

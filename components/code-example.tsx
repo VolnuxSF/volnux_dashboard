@@ -1,5 +1,4 @@
-import { Card } from "@/components/ui/card"
-import { SyntaxHighlighter } from "./syntax-highlighter"
+import { CodeBlock } from "./code-block"
 
 export function CodeExample() {
   const pipelineCode = `from volnux import Pipeline, task
@@ -57,29 +56,18 @@ EventHandler.start()`
           </div>
 
           <div className="grid gap-6 lg:grid-cols-2">
-            <Card className="p-6 bg-card border-border/50">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm font-medium text-muted-foreground">Define Pipeline</span>
-                  <span className="text-xs text-muted-foreground font-mono">pipeline.py</span>
-                </div>
-                <pre className="text-sm font-mono leading-relaxed overflow-x-auto">
-                  <SyntaxHighlighter code={pipelineCode} />
-                </pre>
-              </div>
-            </Card>
-
-            <Card className="p-6 bg-card border-border/50">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm font-medium text-muted-foreground">Event Handling</span>
-                  <span className="text-xs text-muted-foreground font-mono">events.py</span>
-                </div>
-                <pre className="text-sm font-mono leading-relaxed overflow-x-auto">
-                  <SyntaxHighlighter code={eventCode} />
-                </pre>
-              </div>
-            </Card>
+            <CodeBlock
+              code={pipelineCode}
+              language="python"
+              filename="pipeline.py"
+              highlight
+            />
+            <CodeBlock
+              code={eventCode}
+              language="python"
+              filename="events.py"
+              highlight
+            />
           </div>
         </div>
       </div>

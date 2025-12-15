@@ -1,6 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { CodeBlock } from "@/components/code-block"
 import { ArrowRight, Terminal } from "lucide-react"
 import { useRef } from "react"
 
@@ -44,11 +45,8 @@ export function Hero() {
             </Button>
           </div>
 
-          <div className="pt-8">
-            <div className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 font-mono text-sm">
-              <span className="text-muted-foreground">$</span>
-              <span>pip install volnux-workflow</span>
-            </div>
+          <div className="pt-8 flex justify-center">
+            <CodeBlock code="pip install volnux" />
           </div>
         </div>
       </div>
