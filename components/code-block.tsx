@@ -59,7 +59,7 @@ export function CodeBlock({
       <div className="px-4 py-3 overflow-x-auto">
         <pre className="text-sm leading-relaxed">
           {highlight ? (
-            <SyntaxHighlighter code={code} />
+            <SyntaxHighlighter code={code} language={language} />
           ) : (
             <code>
               {shouldShowPrompt && <span className="text-muted-foreground">$ </span>}

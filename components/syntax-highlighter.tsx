@@ -58,8 +58,70 @@ function tokenizePython(code: string): Token[] {
   return tokens
 }
 
-export function SyntaxHighlighter({ code }: { code: string }) {
-  const tokens = tokenizePython(code)
+function tokenizePointy(code: string): Token[] {
+  const tokens: Token[] = []
+  // Operators: |->, ->, ||
+  const operators = /(\|->|->|\|\|)/g
+  const comments = /#.*/g
+  const numbers = /\b[0-9]\b/g
+  // Event names (capitalized words)
+  const eventNames = /\b([A-Z][a-zA-Z0-9]*)\b/g
+
+  let lastIndex = 0
+  const matches: Array<{ index: number; length: number; type: Token["type"]; value: string }> = []
+
+  // Collect all matches
+  let match
+  while ((match = comments.exec(code)) !== null) {
+    matches.push({ index: match.index, length: match[0].length, type: "comment", value: match[0] })
+  }
+  while ((match = operators.exec(code)) !== null) {
+    matches.push({ index: match.index, length: match[0].length, type: "operator", value: match[0] })
+  }
+  while ((match = numbers.exec(code)) !== null) {
+    matches.push({ index: match.index, length: match[0].length, type: "number", value: match[0] })
+  }
+  while ((match = eventNames.exec(code)) !== null) {
+    matches.push({ index: match.index, length: match[0].length, type: "function", value: match[0] })
+  }
+
+  // Sort by index, then by length (longer matches first to handle overlaps)
+  matches.sort((a, b) => a.index - b.index || b.length - a.length)
+
+  // Remove overlapping matches
+  const filteredMatches: typeof matches = []
+  let lastEnd = 0
+  for (const m of matches) {
+    if (m.index >= lastEnd) {
+      filteredMatches.push(m)
+      lastEnd = m.index + m.length
+    }
+  }
+
+  // Build tokens
+  lastIndex = 0
+  filteredMatches.forEach((m) => {
+    if (m.index > lastIndex) {
+      tokens.push({ type: "text", value: code.slice(lastIndex, m.index) })
+    }
+    tokens.push({ type: m.type, value: m.value })
+    lastIndex = m.index + m.length
+  })
+
+  if (lastIndex < code.length) {
+    tokens.push({ type: "text", value: code.slice(lastIndex) })
+  }
+
+  return tokens
+}
+
+interface SyntaxHighlighterProps {
+  code: string
+  language?: string
+}
+
+export function SyntaxHighlighter({ code, language = "python" }: SyntaxHighlighterProps) {
+  const tokens = language === "pointy" ? tokenizePointy(code) : tokenizePython(code)
 
   return (
     <code>
@@ -77,7 +139,9 @@ export function SyntaxHighlighter({ code }: { code: string }) {
                     ? "text-chart-4"
                     : token.type === "number"
                       ? "text-chart-5"
-                      : "text-foreground"
+                      : token.type === "operator"
+                        ? "text-primary font-bold"
+                        : "text-foreground"
 
         return (
           <span key={i} className={className}>

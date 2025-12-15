@@ -1,58 +1,60 @@
 import { CodeBlock } from "./code-block"
 
 export function CodeExample() {
-  const pipelineCode = `from volnux import Pipeline, task
+  const pipelineCode = `from volnux import Pipeline
+from volnux import EventBase
+from volnux.fields import InputDataField
 
-@task
-def extract_data(source: str):
-    """Extract data from source"""
-    return fetch_data(source)
+class ExtractData(EventBase):
+    def process(self, source: str):
+        """Extract data from source"""
+        return True, fetch_data(source)
 
-@task
-def transform_data(data):
-    """Transform and clean data"""
-    return process(data)
+class TransformData(EventBase):
+    def process(self, data):
+        """Transform and clean data"""
+        return True, process(data)
 
-@task
-def load_data(data, target: str):
-    """Load data to target"""
-    save_to_db(data, target)
+class LoadData(EventBase):
+    def process(self, data):
+        """Load data to destination"""
+        save_to_db(data)
+        return True, "Data loaded"
 
-# Create pipeline
-pipeline = Pipeline("etl_workflow")
-pipeline.add_tasks([
-    extract_data,
-    transform_data,
-    load_data
-])`
-
-  const eventCode = `from volnux import EventHandler
-
-@EventHandler.on("data.received")
-def handle_new_data(event):
-    """Process incoming data events"""
-    pipeline.run(
-        source=event.data["source"]
-    )
-
-@EventHandler.on("pipeline.failed")
-def handle_failure(event):
-    """Handle pipeline failures"""
-    notify_team(
-        error=event.error,
-        pipeline=event.pipeline_id
-    )
+class ETLPipeline(Pipeline):
+    source = InputDataField(data_type=str, required=True)
     
-# Start event listener
-EventHandler.start()`
+    class Meta:
+        file = "ETLPipeline.pty"`
+
+  const pointyCode = `# Sequential flow
+ExtractData -> TransformData -> LoadData
+
+# Parallel execution
+ExtractData || ValidateSchema
+
+# Pipe results to next event
+ExtractData |-> TransformData
+
+# Conditional branching (on TransformData result)
+ExtractData -> TransformData (
+    0 -> HandleError,
+    1 -> LoadData
+)
+
+# Complex workflow with retry
+ExtractData -> TransformData (
+    0 -> TransformData * 3,
+    1 -> LoadData
+) -> Cleanup`
 
   return (
     <section className="py-24 md:py-32 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-5xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Simple, Pythonic API</h2>
-            <p className="text-lg text-muted-foreground">Define workflows with clean, declarative Python code</p>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Declarative Workflow Definition</h2>
+            <p className="text-lg text-muted-foreground">Define complex workflows with the intuitive Pointy Language DSL</p>
           </div>
 
           <div className="grid gap-6 lg:grid-cols-2">
@@ -63,9 +65,9 @@ EventHandler.start()`
               highlight
             />
             <CodeBlock
-              code={eventCode}
-              language="python"
-              filename="events.py"
+              code={pointyCode}
+              language="pointy"
+              filename="ETLPipeline.pty"
               highlight
             />
           </div>
