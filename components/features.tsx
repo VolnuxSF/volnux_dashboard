@@ -36,7 +36,7 @@ const features = [
     icon: Blocks,
     title: "Extensible Design",
     description:
-      "Plugin architecture and custom operators let you extend Nexus to fit your specific workflow requirements.",
+      "Plugin architecture and custom operators let you extend Volnux to fit your specific workflow requirements.",
   },
 ]
 

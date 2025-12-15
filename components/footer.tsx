@@ -9,9 +9,9 @@ export function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                <span className="text-lg font-bold text-primary-foreground">N</span>
+                <span className="text-lg font-bold text-primary-foreground">V</span>
               </div>
-              <span className="text-xl font-bold">Nexus</span>
+              <span className="text-xl font-bold">Volnux</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Event-driven workflow orchestration for modern Python applications
@@ -44,7 +44,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="https://github.com/nshaibu/nexus"
+                  href="https://github.com/nshaibu/volnux"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   GitHub
@@ -52,7 +52,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="https://github.com/nshaibu/nexus/tree/main/examples"
+                  href="https://github.com/nshaibu/volnux/tree/main/examples"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Examples
@@ -60,7 +60,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="https://github.com/nshaibu/nexus/discussions"
+                  href="https://github.com/nshaibu/volnux/discussions"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Community
@@ -73,7 +73,7 @@ export function Footer() {
             <h3 className="font-semibold mb-4">Connect</h3>
             <div className="flex gap-4">
               <Link
-                href="https://github.com/nshaibu/nexus"
+                href="https://github.com/nshaibu/volnux"
                 className="text-muted-foreground hover:text-foreground transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -90,7 +90,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-border/40 text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} Nexus. Open source under MIT License.</p>
+          <p>© {new Date().getFullYear()} Volnux. Open source under MIT License.</p>
         </div>
       </div>
     </footer>

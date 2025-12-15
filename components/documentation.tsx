@@ -8,25 +8,25 @@ const docSections = [
     icon: Rocket,
     title: "Getting Started",
     description: "Quick start guide to build your first workflow in minutes",
-    link: "https://github.com/nshaibu/nexus#getting-started",
+    link: "https://github.com/nshaibu/volnux#getting-started",
   },
   {
     icon: Code2,
     title: "API Reference",
     description: "Complete documentation of all classes, methods, and decorators",
-    link: "https://github.com/nshaibu/nexus#api-documentation",
+    link: "https://github.com/nshaibu/volnux#api-documentation",
   },
   {
     icon: BookOpen,
     title: "Examples",
     description: "Real-world examples and best practices for common use cases",
-    link: "https://github.com/nshaibu/nexus/tree/main/examples",
+    link: "https://github.com/nshaibu/volnux/tree/main/examples",
   },
   {
     icon: Users,
     title: "Community",
     description: "Join our community, contribute, and get help from other users",
-    link: "https://github.com/nshaibu/nexus/discussions",
+    link: "https://github.com/nshaibu/volnux/discussions",
   },
 ]
 
@@ -36,7 +36,7 @@ export function Documentation() {
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-2xl text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Comprehensive Documentation</h2>
-          <p className="text-lg text-muted-foreground">Everything you need to master Nexus workflow orchestration</p>
+          <p className="text-lg text-muted-foreground">Everything you need to master Volnux workflow orchestration</p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-12">
@@ -62,7 +62,7 @@ export function Documentation() {
 
         <div className="text-center">
           <Button size="lg" asChild>
-            <Link href="https://github.com/nshaibu/nexus" target="_blank" rel="noopener noreferrer">
+            <Link href="https://github.com/nshaibu/volnux" target="_blank" rel="noopener noreferrer">
               View Full Documentation
             </Link>
           </Button>

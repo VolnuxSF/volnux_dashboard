@@ -9,7 +9,7 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Nexus - Event-Driven Workflow Orchestration",
+  title: "Volnux - Event-Driven Workflow Orchestration",
   description:
     "Build powerful, scalable workflow automation with Python. Event-based orchestration, real-time monitoring, and seamless integration.",
   generator: "v0.app",

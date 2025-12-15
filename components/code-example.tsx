@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card"
 import { SyntaxHighlighter } from "./syntax-highlighter"
 
 export function CodeExample() {
-  const pipelineCode = `from nexus import Pipeline, task
+  const pipelineCode = `from volnux import Pipeline, task
 
 @task
 def extract_data(source: str):
@@ -27,7 +27,7 @@ pipeline.add_tasks([
     load_data
 ])`
 
-  const eventCode = `from nexus import EventHandler
+  const eventCode = `from volnux import EventHandler
 
 @EventHandler.on("data.received")
 def handle_new_data(event):

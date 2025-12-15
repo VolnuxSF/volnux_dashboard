@@ -14,9 +14,9 @@ export function Header() {
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-              <span className="text-lg font-bold text-primary-foreground">N</span>
+              <span className="text-lg font-bold text-primary-foreground">V</span>
             </div>
-            <span className="text-xl font-bold">Nexus</span>
+            <span className="text-xl font-bold">Volnux</span>
           </Link>
           <nav className="hidden md:flex items-center gap-6">
             <Link
@@ -38,7 +38,7 @@ export function Header() {
               Pricing
             </Link>
             <Link
-              href="https://github.com/nshaibu/nexus"
+              href="https://github.com/nshaibu/volnux"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
               GitHub
@@ -51,7 +51,7 @@ export function Header() {
             <span className="sr-only">Toggle theme</span>
           </Button>
           <Button variant="ghost" size="icon" asChild>
-            <Link href="https://github.com/nshaibu/nexus" target="_blank" rel="noopener noreferrer">
+            <Link href="https://github.com/nshaibu/volnux" target="_blank" rel="noopener noreferrer">
               <Github className="h-5 w-5" />
               <span className="sr-only">GitHub</span>
             </Link>

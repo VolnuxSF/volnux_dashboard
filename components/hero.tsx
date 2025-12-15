@@ -2,84 +2,12 @@
 
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Terminal } from "lucide-react"
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 
 export function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
-
-    canvas.width = canvas.offsetWidth * 2
-    canvas.height = canvas.offsetHeight * 2
-    ctx.scale(2, 2)
-
-    const nodes = [
-      { x: 50, y: 100, label: "Extract", progress: 0 },
-      { x: 200, y: 100, label: "Transform", progress: 0 },
-      { x: 350, y: 100, label: "Load", progress: 0 },
-    ]
-
-    let animationFrame: number
-    let time = 0
-
-    const animate = () => {
-      time += 0.02
-      ctx.clearRect(0, 0, canvas.width / 2, canvas.height / 2)
-
-      // Draw connections with flowing particles
-      for (let i = 0; i < nodes.length - 1; i++) {
-        const from = nodes[i]
-        const to = nodes[i + 1]
-
-        // Connection line
-        ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue("--border").trim()
-        ctx.lineWidth = 2
-        ctx.beginPath()
-        ctx.moveTo(from.x + 30, from.y)
-        ctx.lineTo(to.x - 30, to.y)
-        ctx.stroke()
-
-        // Flowing particle
-        const progress = (Math.sin(time + i) + 1) / 2
-        const particleX = from.x + 30 + (to.x - from.x - 60) * progress
-        ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue("--primary").trim()
-        ctx.beginPath()
-        ctx.arc(particleX, from.y, 4, 0, Math.PI * 2)
-        ctx.fill()
-      }
-
-      // Draw nodes
-      nodes.forEach((node, i) => {
-        const isActive = Math.sin(time + i * 0.5) > 0
-
-        // Node circle
-        ctx.fillStyle = isActive
-          ? getComputedStyle(document.documentElement).getPropertyValue("--primary").trim()
-          : getComputedStyle(document.documentElement).getPropertyValue("--muted").trim()
-        ctx.beginPath()
-        ctx.arc(node.x, node.y, 25, 0, Math.PI * 2)
-        ctx.fill()
-
-        // Node label
-        ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue("--foreground").trim()
-        ctx.font = "12px sans-serif"
-        ctx.textAlign = "center"
-        ctx.fillText(node.label, node.x, node.y + 45)
-      })
-
-      animationFrame = requestAnimationFrame(animate)
-    }
-
-    animate()
-
-    return () => cancelAnimationFrame(animationFrame)
-  }, [])
-
+ 
   return (
     <section className="relative overflow-hidden border-b border-border/40">
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
@@ -101,7 +29,7 @@ export function Hero() {
           </h1>
 
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-balance">
-            Build powerful, scalable workflow automation with Python. Nexus provides event-based orchestration,
+            Build powerful, scalable workflow automation with Python. Volnux provides event-based orchestration,
             real-time monitoring, and seamless integration for modern data pipelines.
           </p>
 
@@ -119,7 +47,7 @@ export function Hero() {
           <div className="pt-8">
             <div className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 font-mono text-sm">
               <span className="text-muted-foreground">$</span>
-              <span>pip install nexus-workflow</span>
+              <span>pip install volnux-workflow</span>
             </div>
           </div>
         </div>
